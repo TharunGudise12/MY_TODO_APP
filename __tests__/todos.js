@@ -26,11 +26,11 @@ describe("Todo Application", function () {
     }
   });
 
-  test("Test Create Todo Functionality", async () => {
+  test("Test for checking the Create Todo Functionality", async () => {
     const res = await agent.get("/");
     const csrfToken = extractCSRFToken(res);
     const response = await agent.post("/todos").send({
-      title: "Complete Wd 201",
+      title: "Complete reading a novel",
       dueDate: new Date().toISOString(),
       completed: false,
       _csrf: csrfToken,
@@ -38,7 +38,7 @@ describe("Todo Application", function () {
     expect(response.statusCode).toBe(302);
   });
 
-  test("Test set todo status to true", async () => {
+  test("Test for creating set todo status to true", async () => {
     let res = await agent.get("/");
     let csrfToken = extractCSRFToken(res);
     const groupedTodosResponse = await agent
@@ -62,12 +62,12 @@ describe("Todo Application", function () {
     expect(parseUpdateRespnse.completed).toBe(true);
   });
 
-  test("Test set todo complete status to false", async () => {
+  test("Test for creating set todo complete status to false", async () => {
     let res = await agent.get("/");
     let csrfToken = extractCSRFToken(res);
 
     await agent.post("/todos").send({
-      title: "Complete Mid Revesion",
+      title: "Complete Sem Revesion",
       dueDate: new Date().toISOString(),
       completed: false,
       _csrf: csrfToken,
